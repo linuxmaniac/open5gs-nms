@@ -167,6 +167,8 @@ services:
     volumes:
       - ./monitoring/prometheus_data:/prometheus_data
       - ./monitoring/grafana_data:/grafana_data
+    profiles:
+      - monitoring
 
   prometheus:
     image: prom/prometheus:latest
@@ -195,6 +197,8 @@ services:
         max-file: "3"
     labels:
       com.open5gs.nms.service: "prometheus"
+    profiles:
+      - monitoring
 
   grafana:
     image: grafana/grafana-oss:latest
@@ -224,6 +228,8 @@ services:
         max-file: "3"
     labels:
       com.open5gs.nms.service: "grafana"
+    profiles:
+      - monitoring
 
   cert-init:
     image: alpine/openssl
